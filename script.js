@@ -73,3 +73,27 @@ function getYearText(e) {
     }
 }
 
+// DATE
+
+const dateForm = document.querySelector('.getDate');
+const monthInput = document.querySelector('.month');
+const dayInput = document.querySelector('.day');
+const dateText = document.querySelector('.dateText');
+
+dateForm.addEventListener('submit', showDate);
+
+function showDate(e) {
+    e.preventDefault();
+    if(dayInput.value === '' || monthInput.value === '') {
+        fetch(`http://numbersapi.com/${Math.floor(Math.random()*12)}/${Math.floor(Math.random()*31)}/date`)
+        .then(x => x.text())
+        .then(y => dateText.innerHTML = y);
+    } if (dayInput.value != '' && monthInput.value != '') {
+        fetch(`http://numbersapi.com/${monthInput.value}/${dayInput.value}/date`)
+        .then(x => x.text())
+        .then(y => dateText.innerHTML = y)
+    }
+}
+
+
+
